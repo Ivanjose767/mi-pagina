@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro Médico</title>
+    <!-- Agregar FontAwesome para usar íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+          /* Estilos generales */
+body {
+  font-family: Arial, sans-serif; /* Definir la fuente principal */
+  margin: 0; /* Eliminar márgenes predeterminados */
+  padding: 0; /* Eliminar relleno predeterminado */
+  background-color: #f4f4f4; /* Color de fondo claro para el cuerpo */
+  color: #333; /* Color de texto predeterminado */
+}
+
+h1, h2 {
+  margin: 20px; /* Agregar margen a los encabezados */
+}
+
+/* Estilos de la cabecera */
+header {
+  background-color: #004d4d; /* Color de fondo verde oscuro para la cabecera */
+  color: white; /* Color del texto blanco */
+  text-align: center; /* Centrar el texto en la cabecera */
+  padding: 15px; /* Relleno interno para dar espacio al contenido */
+}
+
+header h1 {
+  margin: 0; /* Eliminar márgenes del título principal */
+}
+
+/* Estilos del botón de modo oscuro */
+.toggle-mode {
+  background-color: #004d4d; /* Fondo del botón de modo oscuro */
+  font-size: 1.5rem; /* Tamaño grande de la fuente */
+  color: white; /* Color de texto blanco */
+  border: none; /* Sin borde */
+  padding: 10px 15px; /* Espaciado dentro del botón */
+  cursor: pointer; /* Cambia el cursor a puntero cuando pasa sobre el botón */
+  font-size: 16px; /* Tamaño de fuente más pequeño para el botón */
+  position: absolute; /* Posicionar el botón de forma absoluta */
+  top: 15px; /* Distancia desde la parte superior */
+  right: 120px; /* Distancia desde la parte derecha, ajustada para separar más de otros elementos */
+  transition: background-color 0.3s; /* Efecto de transición suave para el cambio de color */
+}
+
+   /* Efecto de borde redondeado al pasar el cursor (solo en modo oscuro) */
+   body.dark-mode .info:hover,
+        body.dark-mode .toggle-mode:hover,
+        body.dark-mode .back-btn:hover {
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+/* Estilos del botón de volver */
+nav .back-btn {
+  color: white; /* Color del texto blanco */
+  text-decoration: none; /* Eliminar subrayado */
+  font-size: 1.2rem; /* Tamaño de fuente más pequeño */
+  background-color: #004d4d; /* Fondo del botón de volver */
+  border-radius: 5px; /* Bordes redondeados */
+  padding: 5px 15px; /* Espaciado dentro del botón */
+  transition: background-color 0.3s; /* Efecto de transición suave para el cambio de color */
+  display: inline-block; /* Hace que el botón ocupe solo el espacio necesario */
+  text-align: center; /* Centra el texto en el botón */
+  position: absolute; /* Posición absoluta para alinearlo a la derecha */
+  top: 15px; /* Distancia desde la parte superior */
+  right: 20px; /* Distancia desde la parte derecha */
+}
+
+/* Cambio de color del botón de volver al pasar el cursor */
+nav .back-btn:hover {
+  background-color: #006666; /* Cambio de color cuando el cursor está sobre el botón */
+  border-radius: 5px; /* Mantener los bordes redondeados al pasar el cursor */
+}
+
+/* Estilos de la barra de navegación */
+nav {
+  background-color: #004d4d; /* Color de fondo para la barra de navegación */
+  text-align: center; /* Centrar los elementos de la barra */
+}
+
+nav ul {
+  list-style-type: none; /* Eliminar los puntos de las listas */
+  padding: 0; /* Eliminar el relleno */
+  margin: 0; /* Eliminar el margen */
+}
+
+nav ul li {
+  display: inline-block; /* Mostrar los elementos de la lista en línea */
+  position: relative; /* Posición relativa para los submenús */
+}
+
+
+nav ul li a {
+  display: block; /* Hacer que los enlaces ocupen todo el espacio del contenedor */
+  color: white; /* Color de texto blanco para los enlaces */
+  text-decoration: none; /* Eliminar subrayado de los enlaces */
+  padding: 10px 15px; /* Espaciado dentro de los enlaces */
+  text-align: center; /* Centrar el texto de los enlaces */
+}
+
+nav ul li ul {
+  display: none; /* Ocultar los submenús por defecto */
+  position: absolute; /* Posición absoluta para los submenús */
+  top: 100%; /* Colocar los submenús justo debajo de los elementos principales */
+  left: 0; /* Alinear los submenús a la izquierda */
+  background-color: #004d4d; /* Fondo del submenú */
+}
+
+nav ul li:hover > ul {
+  display: block; /* Mostrar los submenús cuando el elemento principal esté en hover */
+}
+
+nav ul li ul li a {
+  padding: 10px 20px; /* Espaciado más grande para los elementos del submenú */
+}
+
+/* Estilos del contenedor de contenido */
+.container {
+  padding: 20px; /* Agregar relleno a la sección de contenido */
+}
+
+/* Estilos de las secciones */
+section {
+  margin-bottom: 20px; /* Separar las secciones entre sí */
+}
+
+section h2 {
+  color: #004d4d; /* Color del encabezado de las secciones */
+}
+
+section ul {
+  list-style-type: none; /* Eliminar los puntos de las listas */
+  padding: 0; /* Eliminar el relleno */
+}
+
+section ul li {
+  margin: 5px 0; /* Separar los elementos de la lista */
+}
+
+
+/* Modo oscuro */
+body.dark-mode {
+  background-color: #333; /* Fondo oscuro en el modo oscuro */
+  color: #f4f4f4; /* Texto claro en el modo oscuro */
+}
+
+body.dark-mode header {
+  background-color: #004d4d; /* Fondo de cabecera igual en modo oscuro */
+}
+
+body.dark-mode nav {
+  background-color: #004d4d; /* Fondo de la barra de navegación igual en modo oscuro */
+}
+
+body.dark-mode nav ul li a {
+  color: #ddd; /* Color de los enlaces más claros en modo oscuro */
+}
+
+body.dark-mode nav ul li ul {
+  background-color: #004d4d; /* Fondo de submenú igual en modo oscuro */
+}
+
+body.dark-mode footer {
+  background-color: #222; /* Fondo oscuro para el pie de página en modo oscuro */
+}
+body.dark-mode .text-container {
+            color: white; /* Texto blanco en la sección de texto cuando esté en modo oscuro */
+        }
+
+/* Estilos adicionales */
+.main-content {
+  display: block; /* Mostrar el contenido principal */
+}
+
+/* Estilos del botón de modo oscuro */
+.main-content .toggle-mode {
+  position: absolute; /* Posicionar el botón de modo oscuro de manera absoluta */
+  top: 15px; /* Separarlo desde la parte superior */
+  right: 120px; /* Separarlo desde la parte derecha */
+}
+
+footer {
+  text-align: center; /* Centrar el texto del pie de página */
+  padding: 1rem 0; /* Relleno vertical */
+  background-color: #333; /* Fondo oscuro del pie de página */
+  color: white; /* Color blanco para el texto del pie de página */
+}
+
+  /* Estilos de la imagen */
+  .image-container {
+            margin: 20px 0; /* Margen superior e inferior para la imagen */
+            display: flex; /* Usar flexbox para centrar la imagen */
+            justify-content: center; /* Centrar horizontalmente */
+            align-items: center; /* Centrar verticalmente */
+        }
+        .image-container img {
+            width: 300%; /* Hacer que la imagen ocupe el 100% del contenedor */
+            max-width: 300px; /* Limitar el ancho máximo de la imagen */
+            height: auto; /* Mantener la proporción de la imagen */
+            border-radius: 10px; /* Bordes redondeados para la imagen */
+        }
+
+        /* Estilos del texto */
+        .text-container {
+            font-size: 1.2rem; /* Tamaño de fuente del texto */
+            color: #333; /* Color del texto */
+            line-height: 1.6; /* Altura de línea para mejorar la legibilidad */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>IMSS</h1>
+        <button class="toggle-mode" onclick="toggleMode()">Modo Oscuro</button>
+        <!-- Barra de navegación con botón de regresar -->
+    <nav>
+      <a href="CentrosS.html" class="back-btn">Volver</a>
+  </nav>
+        <p>Tu salud es nuestra prioridad</p>
+    </header>
+
+
+    <section>
+        <div class="container">
+            <div class="image-container">
+                <img src="imsss.jpg" id="preview" alt="Logo de Centro de Salud">
+            </div>
+            <div class="text-container">
+                <p>El IMSS está comprometido con la atención y el cuidado integral de la salud de sus derechohabientes, brindando servicios de alta calidad y acceso a una atención médica completa y personalizada. Contamos con profesionales de la salud altamente capacitados y recursos tecnológicos avanzados que nos permiten ofrecer diagnósticos precisos y tratamientos eficaces en diversas especialidades.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Cárdenas Salud | Todos los derechos reservados</p>
+    </footer>
+
+    <script>
+        // Verifica si el usuario ya tiene una preferencia guardada en localStorage
+        let currentMode = localStorage.getItem('mode') || 'light';
+
+        // Si el modo guardado es oscuro, aplica el modo oscuro
+        if (currentMode === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
+
+        function toggleMode() {
+            document.body.classList.toggle('dark-mode');
+            // Cambia el modo actual
+            currentMode = (currentMode === 'light') ? 'dark' : 'light';
+            // Guarda la preferencia en localStorage
+            localStorage.setItem('mode', currentMode);
+        }
+    </script>
+
+</body>
+</html>
+
